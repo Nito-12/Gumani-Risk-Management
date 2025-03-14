@@ -1,0 +1,1008 @@
+:root{
+
+    /**
+    * colors
+    */
+  
+  --gumani: #2d6a4f;
+  --cmpy-name: rgb(172, 142, 107);
+  --main-font: #1d3557;
+  --navbar-btn: #001845;
+  --about-color: #f0f2f4;
+  --signup-btn: #e63946;
+  --bg-color: #d8f3dc;
+  --white: #ffffff;
+  --black: #000000;
+  --sidebar: pink;
+
+  
+  /**
+    * typography
+    */
+  
+  --ff-rosario: 'Rosario', sans-serif;
+  --ff-romans: Georgia, 'Times New Roman', Times, serif;
+  
+  --fs-1: 5rem;
+  --fs-2: 4.2rem;
+  --fs-3: 3rem;
+  --fs-4: 2.2rem;
+  --fs-5: 1.8rem;
+  
+  --fw-600: 600;
+  --fw-700: 700;
+  
+  /**
+    * spacing
+    */
+  
+  --section-padding: 12rem;
+  
+  /**
+    * box shadow
+    */
+  
+  --shadow-1: 0px 0px 30px 0px hsla(0, 0%, 0%, 0.2);
+  
+  /**
+    * border radius
+    */
+  
+  --radius-circle: 50%;
+  --radius-20: 20px;
+  --radius-16: 16px;
+  --radius-6: 6px;
+  --radius-4: 4px;
+  --btn-radius: 32px 6px;
+  
+  /**
+    * transition
+    */
+  
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease;
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+  --cubic-out: cubic-bezier(0.05, 0.83, 0.52, 0.97);
+  
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li { list-style: none; }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+li a button {
+    padding: 5px 15px;
+    color: var(--white);
+    background-color: var(--navbar-btn);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
+}
+
+li a button:hover {
+    background-color: #01497c;
+}
+
+ion-icon { pointer-events: none; }
+
+html {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 13px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--about-color);
+  color: rgb(9, 9, 57);
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+
+.container { padding-inline: 16px; }
+
+.logo {
+    display: inline-block; /* Ensures proper layout behavior */
+    text-decoration: none; /* Removes underline (if any) */
+    transition: border-color 0.3s ease;
+    margin-right: auto;
+}
+  
+.clickable-logo {
+    width: 65px; /* Sets the image width */
+    height: 60px; /* Maintains aspect ratio */
+    transition: transform 0.3s ease;
+}
+  
+.clickable-logo:hover {
+    transform: scale(1.1); /* Scales the image on hover */
+}
+
+/* li, a, button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: var(--fw-600);
+    font-size: 17px;
+    color: var(--main-font);
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 6%;
+    background-color: var(--bg-color);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-list, .sidebar {
+    list-style: none;
+}
+
+.navbar-list li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navbar-list li a {
+    transition: all 0.3s ease 0s;
+}
+
+.navbar-list li a:hover {
+    color: #8da9c4;
+}
+
+button {
+    padding: 9px 25px;
+    color: var(--white);
+    background-color: var(--navbar-btn);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: #01497c;
+} */
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: var(--shadow-1);
+    padding-block: 1%;
+    background-color: var(--bg-color);
+    z-index: 4;
+  }
+  
+  .header.active {
+    position: sticky;
+    animation: slideIn 0.5s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    0% { transform: translateY(-100%); }
+    100% { transform: translate(0); }
+  }
+  
+  .header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-open-btn {
+    font-size: 3.5rem;
+    color: var(--main-font);
+  }
+  
+  .nav-open-btn ion-icon { --ionicon-stroke-width: 26px; }
+
+  
+  .navbar {
+    position: absolute;
+    top: 0;
+    right: 350px;
+    max-width: 350px;
+    width: 60%;
+    background-color: var(--bg-color);
+    height: 100vh;
+    padding: 26px;
+    z-index: 2;
+    visibility: hidden;
+    transition: 0.25s var(--cubic-out);
+  }
+  
+  .navbar.active {
+    visibility: visible;
+    transform: translateX(350px);
+    transition: 0.5 var(--cubic-out);
+  }
+  
+  .nav-close-btn {
+    margin-inline-start: auto;
+    font-size: 2.4rem;
+    /* border: 1px solid var(--main-font);
+    padding: 2px;
+    border-radius: var(--radius-4); */
+    margin-block-end: 40px;
+  }
+  
+  .navbar-link {
+    padding-block: 10px;
+    color: var(--main-font);
+    transition: var(--transition-1);
+    font-weight: var(--fw-600);
+  }
+  
+  .navbar-link:is(:hover, :focus-visible) { color: #748cab}
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--main-font);
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition-1);
+  }
+  
+  .overlay.active{
+    visibility: visible;
+    opacity: 0.4;
+  }
+
+
+
+    /**
+    * ROTATING LOGO
+    */
+
+  .rotating-logo {
+    display: block;
+    margin: 20px auto;
+    margin-top: -90px;
+    width: 80px; /*Adjust size as needed*/
+    height: auto;
+
+    animation: rotate 3s infinite linear;
+    transform-style: preserve-3d; /*important for 3D effect*/
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(180deg); /*Midway, flip to the back*/
+    }
+    100% {
+      transform: rotateY(360deg); /*Full rotation,  return to front*/
+    }
+  }
+
+  .rotation {
+    background-color: #2d393d;
+    background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+    padding: 20px;
+    height: 30vh;
+    border-radius: none;
+  }
+
+
+    /**
+    * ABOUT
+    */
+  
+  .security .security-about {
+    display: block;
+    margin: 20px auto;
+    width: 350px;
+  }
+
+  .about-text {
+    margin: 20px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+  }
+
+  .custom-line {
+    margin-top: 50px;
+    height: 5px;
+    border: none;
+    background-color: var(--cmpy-name);
+    width: 15%; 
+  }
+
+  h1 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: var(--fs-4);
+  }
+
+
+
+
+    /**
+    * WHAT WE DO
+    */
+
+  
+  .services{
+    background-color: var(--bg-color);
+    padding-top: 5px;
+    padding-bottom: 3rem;
+  }
+
+  .services-text {
+    margin: 20px;
+  }
+
+  .services-text p {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  h2 {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: var(--fw-600)
+  }
+
+  .lockpad-icon {
+    display: block;
+    width: 45px; 
+  }
+
+
+
+    /**
+    * COURSES
+    */
+
+
+
+  .courses {
+    padding-top: 5px;
+    margin: 20px;
+  }
+
+  .courses .courses-image .the-images {
+    display: block;
+    margin: 20px auto;
+    margin-top: 40px;
+    width: 300px;
+    height: 350px;
+  }
+
+  .courses button {
+    display: block;
+    margin: 20px auto;
+    padding: 5px 15px;
+    color: var(--white);
+    background-color: var(--signup-btn);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
+  }
+
+  .courses .signup-button:hover {
+      background-color: #780000;
+  }
+
+  .signup-button {
+    padding-block: 10px;
+    color: var(--white);
+    transition: var(--transition-1);
+    font-weight: var(--fw-600);
+  }
+
+  .courses h2 {
+    text-align: center;
+    color: var(--cmpy-name);
+  }
+
+
+   /**
+    * FOOTER
+    */
+ 
+  .footer {
+      margin-top: 5rem;
+      font-family: var(--ff-romans);
+      background-color: #2d393d;
+      color: var(--white);
+      padding: 3rem 0;
+      font-size: 16px;
+      position: relative;
+  }
+  
+  .footer-container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+  }
+  
+  .footer-column {
+      max-width: 350px;
+      margin: auto;
+  }
+  
+  .footer-title {
+      font-size: 1.3rem;
+      color: var(--cmpy-name);
+      margin-bottom: 1rem;
+      font-weight: 600;
+  }
+  
+  .footer-slogan {
+      font-style: var(--ff-romans) ;
+      color: var(--cmpy-name);
+      margin-top: 1rem;
+  }
+  
+  .footer-links {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .footer-links li {
+      margin: 8px 0;
+  }
+  
+  .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+      color: var(--cmpy-name);
+  }
+  
+  
+  
+  /* Footer Bottom */
+  .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 14px;
+  }
+
+
+    /**
+    * REGISTRATION FORM
+    */
+
+
+  
+    .registration-section {
+      padding: var(--section-padding);
+      background-color: var(--bg-color);
+      margin-top: 50px;
+  }
+  
+  .section-title {
+      font-size: var(--fs-3);
+      color: var(--main-font);
+      text-align: center;
+      margin-bottom: 2rem;
+  }
+  
+  .registration-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius-16);
+      box-shadow: var(--shadow-1);
+  }
+  
+  .form-group {
+      margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+      display: block;
+      font-size: var(--fs-5);
+      color: var(--main-font);
+      margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--main-font);
+      border-radius: var(--radius-6);
+      font-size: var(--fs-5);
+      color: var(--main-font);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+      outline: none;
+      border-color: var(--gumani);
+  }
+  
+  .submit-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--signup-btn);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-6);
+      font-size: var(--fs-5);
+      cursor: pointer;
+      transition: var(--transition-1);
+  }
+  
+  .submit-btn:hover {
+      background-color: #780000;
+  }
+
+
+
+
+
+
+
+
+/*-----------------------------------*\
+  #MEDIA QUERIES
+\*-----------------------------------*/
+
+
+/**
+* responsive for smaller than 575px screen
+*/
+
+
+@media (max-width: 574px) { /*Phones*/
+  .navbar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Spacing for small screens */
+      align-items: flex-start;
+  }
+
+  .navbar-link {
+      padding: 15px 10px; /* Larger touch area */
+  }
+
+  .footer-title {
+    text-align: center;
+  }
+
+  /* Registration Form */
+
+  .registration-section {
+    margin-top: 100px;
+    padding: 1rem;
+}
+
+.section-title {
+    font-size: var(--fs-5);
+}
+
+.registration-form {
+    padding: 1rem;
+}
+
+.form-group label {
+    font-size: var(--fs-7);
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.4rem;
+    font-size: var(--fs-7);
+}
+
+.submit-btn {
+    padding: 0.4rem;
+    font-size: var(--fs-7);
+}
+
+
+}
+
+
+
+/**
+* responsive for larger than 575px screen
+*/
+
+@media (min-width: 575px) and (max-width: 991px) { /*Tablets*/
+
+   
+  
+    .container {
+      max-width: 540px;
+      width: 100%;
+      margin-inline: auto;
+    }
+
+    .navbar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px; /* Extra space for tablet devices */
+      align-items: flex-start;
+    }
+
+    .navbar-link {
+        padding: 18px 10px; /* Adequate padding for tablets */
+    }
+
+
+    /**
+    * ROTATING LOGO
+    */
+
+
+    .rotating-logo {
+      display: block;
+      margin: 20px auto;
+      margin-top: -80px;
+      width: 120px; /*Adjust size as needed*/
+      height: auto;
+    }
+
+    .rotation {
+      padding: 20px;
+      height: 40vh;
+      border-radius: none;
+    }
+
+    /**
+    * ABOUT US
+    */
+
+    .about {
+      display: flex;
+      flex-direction: row; /* Side by side */
+      align-items: center; /* Align vertically */
+      justify-content: center; /* Centers content */
+      gap: 1.5rem; /* Space between image & text */
+    }
+  
+    .security .security-about {
+      width: 200px; /* Smaller image for tablets */
+      order: -1; /* Keeps image on the left */
+    }
+  
+    .about-text {
+      width: 50%;
+    }
+
+    .footer-title {
+      text-align: center;
+    }
+
+    /* Registration Form */
+
+    .registration-section {
+      margin-top: 120px;
+      padding: 1.5rem;
+  }
+
+  .section-title {
+      font-size: var(--fs-4);
+  }
+
+  .registration-form {
+      padding: 1.5rem;
+  }
+
+  .form-group label {
+      font-size: var(--fs-6);
+  }
+
+  .form-group input,
+  .form-group select {
+      padding: 0.5rem;
+      font-size: var(--fs-6);
+  }
+
+  .submit-btn {
+      padding: 0.5rem;
+      font-size: var(--fs-6);
+  }
+  
+  }  
+  
+  /**
+  * responsive for larger than 768px screen
+  */
+  
+  @media (min-width: 768px) {
+  
+    /**
+     * CUSTOM PROPERTY
+     */
+  
+    :root {
+  
+      /**
+       * typography
+       */
+  
+      --fs-1: 6.5rem;
+    }
+  
+  
+  
+  
+    /**
+     * REUSED STYLE
+     */
+  
+    .container { max-width: 720px; }
+
+    .about {
+      display: flex;
+      flex-direction: row; /* Side by side */
+      align-items: center; /* Align vertically */
+      justify-content: center; /* Centers content */
+      gap: 1.5rem; /* Space between image & text */
+    }
+  
+    .security .security-about {
+      width: 250px; /* Smaller image for tablets */
+      order: -1; /* Keeps image on the left */
+    }
+  
+    .about-text {
+      width: 50%;
+    }
+
+    /**
+     * FOOTER
+     */
+
+    .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .footer-column {
+      max-width: 300px;
+    }
+
+}
+
+
+/**
+* responsive for larger than 992px screen
+*/
+
+@media (min-width: 992px) {
+
+    /**
+     * CUSTOM PROPERTY
+     */
+  
+    .root {
+  
+      /**
+       * typography
+       */
+      
+      --fs-2: 4.8rem; 
+      --fs-3: 3.5rem;
+  
+    }
+  
+  
+  
+    /**
+     * REUSED STYLE
+     */
+    
+    .container { max-width: 1400px; }
+  
+  
+  
+    /**
+     * HEADER
+     */
+
+  
+    .nav-open-btn,
+    .nav-close-btn,
+    .overlay { display: none; }
+  
+    .header { padding-block: 5px; }
+  
+    .navbar,
+    .navbar.active {
+      all: unset;
+      display: block;
+    }
+  
+    .navbar-list {
+      display: flex;
+      gap: 40px;
+    }
+
+    .clickable-logo {
+      width: 130px;
+      height: 100px;
+    }
+  
+    .navbar-link { color: var(--main-font); }
+
+      /**
+     * ROTATING IMAGE
+     */
+
+    .rotating-logo {
+      display: block;
+      margin: 20px auto;
+      width: 150px; /*Adjust size as needed*/
+      height: auto;
+    }
+
+    .rotation {
+      padding: 20px;
+      height: 60vh;
+      border-radius: none;
+    }
+
+
+    /**
+     * ABOUT US
+     */
+
+    .about {
+      display: flex;
+      align-items: center; /* Align items vertically */
+      justify-content: flex-start; /* Align items to the left */
+      gap: 6rem; /* Adds space between image and text */
+      flex-wrap: wrap; /* Ensures proper wrapping on smaller screens */
+    }
+  
+    .security .security-about {
+      height: auto;
+      width: 450px; /* Adjust as needed */
+      margin-left: 20rem; /* Remove extra margins */
+      order: -1; /* Moves the image to the left */
+    }
+  
+    .about-text {
+      width: 35rem; /* Adjust width as needed */
+    }
+
+    .about-text p {
+      font-size: var(--fs-6);
+    }
+
+
+
+    /**
+     * WHAT WE DO
+     */
+
+    .services-heading {
+      height: auto;
+      width: 450px; 
+      margin-left: 24rem; /* Remove extra margins */
+      order: -1;
+    }
+
+    .services-text {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+  
+    .security-grades,
+    .cash-in-transit {
+      width: calc(50% - 3rem); /* Two equal columns */
+      padding-left: 10rem;
+
+    }
+  
+    .reaction {
+      width: 50rem; /* Takes full width */
+      text-align: left; /* Centers content */
+    }
+
+
+    /**
+     * COURSES
+     */
+
+    .courses-heading {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center; /* Center horizontally */
+      text-align: center; /* Ensure text alignment */
+      margin-bottom: 2rem; /* Add spacing below */
+    }
+  
+  
+
+    .courses {
+      display: grid;
+      grid-template-columns: 1fr; /* Heading takes full width */
+      text-align: center;
+    }
+  
+  
+    .courses-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+      gap: 2rem; /* Space between items */
+      justify-content: center;
+    }
+  
+    .grades,
+    .cash,
+    .secutity-reaction {
+      text-align: center; /* Centers content inside */
+    }
+
+    /* Registration Form */
+
+    .registration-form {
+      max-width: 600px; /* Maintain max-width for larger screens */
+      padding: 2rem; /* Consistent padding */
+  }
+
+  .form-group input,
+  .form-group select {
+      font-size: var(--fs-5); /* Maintain default input size */
+  }
+
+  .submit-btn {
+      font-size: var(--fs-5); /* Default button text size */
+  }
+
+
+}
+
+
